@@ -11,6 +11,7 @@ namespace TSP
         static int[] steps;//for storage of the smallest weight of a way from one top in another
         static int counterForSteps;//
         static bool[] visites;//for check the top was visited or not
+        static int counterForCheck;
 
         //Fill of weights of the graph
         static public void FillOfWeightsOfTheGraph()
@@ -39,11 +40,35 @@ namespace TSP
                     Console.WriteLine("{0} - {1} = {2}", i + 1, j + 1, arrayWeights[i, j]);
         }
 
+        //Check whether all the vertices have been visited
+        static public bool CheckVisits()
+        {
+            for (counterForCheck = 0; counterForCheck < numberOfTops - 1; counterForCheck++)
+                if (!visites[counterForCheck])
+                    return false;
+            return true;
+        }
+
         //Search of the minimum weight for this top (parameter i)
         static public int SearchMin(int i)
         {
             int jValue = 0;
             int temp = Int32.MaxValue;
+
+            if (i == counterForCheck && !CheckVisits())
+            {
+                visites[i] = true;
+                if (CheckVisits())
+                {
+                    steps[counterForSteps] = arrayWeights[i, 0];
+                    visites[i] = true;
+                    return jValue = numberOfTops - 1;
+                }
+                else
+                {
+                    visites[i] = false;
+                }
+            }
 
             for (int j = 1; j < numberOfTops; j++)
             {
@@ -60,19 +85,20 @@ namespace TSP
                 }
                 else if (i == j && i == numberOfTops - 1 && j == numberOfTops - 1)
                 {
-#pragma warning disable
-                    for (int t = 0; t < numberOfTops - 1; t++)
-                        if (!visites[t])
-                            break;
-                        else
-                        {
-                            steps[counterForSteps] = arrayWeights[j, 0];
-                            visites[i] = true;
-                            return jValue = numberOfTops - 1;
-                        }
-#pragma warning restore
+                    if (CheckVisits())
+                    {
+                        steps[counterForSteps] = arrayWeights[j, 0];
+                        visites[i] = true;
+                        return jValue = numberOfTops - 1;
+                    }
+                    else
+                    {
+                        visites[i] = true;
+                        ++counterForSteps;
+                        return counterForCheck;
+                    }
                 }
-                else if (i == j && i == numberOfTops - 1 && j != numberOfTops - 1)
+                else if (i == j && i == numberOfTops - 1 && j != numberOfTops - 1 && !visites[j])
                 {
                     continue;
                 }
