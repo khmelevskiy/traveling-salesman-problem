@@ -72,7 +72,7 @@ namespace TSP
 
             for (int j = 1; j < numberOfTops; j++)
             {
-                if (arrayWeights[i, j] < temp && i != j)
+                if (arrayWeights[i, j] < temp && i != j && !visites[j])
                 {
                     temp = arrayWeights[i, j];
                     steps[counterForSteps] = arrayWeights[i, j];
