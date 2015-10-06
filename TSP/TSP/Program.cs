@@ -43,7 +43,7 @@ namespace TSP
         //Check whether all the vertices have been visited
         static public bool CheckVisits()
         {
-            for (counterForCheck = 0; counterForCheck < numberOfTops - 1; counterForCheck++)
+            for (counterForCheck = 0; counterForCheck < numberOfTops; counterForCheck++)
                 if (!visites[counterForCheck])
                     return false;
             return true;
@@ -58,6 +58,7 @@ namespace TSP
             if (i == counterForCheck && !CheckVisits())
             {
                 visites[i] = true;
+
                 if (CheckVisits())
                 {
                     steps[counterForSteps] = arrayWeights[i, 0];
@@ -65,14 +66,12 @@ namespace TSP
                     return jValue = numberOfTops - 1;
                 }
                 else
-                {
                     visites[i] = false;
-                }
             }
 
             for (int j = 1; j < numberOfTops; j++)
             {
-                if (arrayWeights[i, j] < temp && i != j && !visites[j])
+                if (arrayWeights[i, j] < temp && i != j && !visites[j])//?
                 {
                     temp = arrayWeights[i, j];
                     steps[counterForSteps] = arrayWeights[i, j];
@@ -113,7 +112,6 @@ namespace TSP
         {
             for (int v = 0; v < numberOfTops; v++)
                 visites[v] = false;
-
 
             for (int i = 0; i < numberOfTops; )
             {
