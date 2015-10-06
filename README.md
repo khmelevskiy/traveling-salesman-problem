@@ -1,4 +1,4 @@
-# Traveling-salesman-problem
+# Traveling salesman problem
 TSP using graphs (a greedy algorithm)
 
 ---
