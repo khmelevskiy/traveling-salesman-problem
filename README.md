@@ -30,7 +30,4 @@ It will be simpler to understand, having looked at an example :-)
 
 ![enter image description here](https://lh3.googleusercontent.com/cbLHpo54qU55s8SJn6T2SQ-8lyvRFxh9ONXmtXFNa20=s0 "IMG_20151006_080649.jpg")
 
-And program screenshot :-)
-![enter image description here](https://lh3.googleusercontent.com/bfF_D0e_nDiwBl4frQp36k8w7HZkl8yjylxvFTDp2_Q=s0 "Program result print.png")
-
 *On it at me everything, I wish good luck :)*
